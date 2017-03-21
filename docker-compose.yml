@@ -13,7 +13,7 @@ web:
     ELGG_PASSWORD: admin-pass
     ELGG_WWW_ROOT: http://localhost:8080
 mysql:
-  image: mysql:5.6  
+  image: mariadb:10.1  
   environment:
     MYSQL_DATABASE: elgg
     MYSQL_ROOT_PASSWORD: root-pass
