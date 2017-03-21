@@ -22,7 +22,7 @@ WORKDIR /var/www/html/
 RUN a2enmod rewrite
 
 #Set time zone in server
-ENV TIMEZONE="America/Sao_Paulo"
+ENV TIMEZONE="Europe/Madrid"
 RUN cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 #Set time zone in PHP
 RUN sed -i "s#{{timezone}}#$TIMEZONE#g" /usr/local/etc/php/php.ini
