@@ -1,8 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
-  -	[`2.0` (*Dockerfile*)](https://github.com/keviocastro/elgg-docker/blob/2.0/Dockerfile), [`lastest` (*Dockerfile*)](https://github.com/keviocastro/elgg-docker/blob/master/Dockerfile)
-  -	[`1.12` (*Dockerfile*)](https://github.com/keviocastro/elgg-docker/blob/1.12/Dockerfile)
-
+This docker compose is for RedProfesional v 1.12 and beyond
 
 # What is Elgg ?
 
@@ -12,6 +10,10 @@ and associations to create their own fully-featured social networks and applicat
 For more information and related for Elgg, please visit www.elgg.org.
 ![logo](https://elgg.org/images/elgg_small.png)
 
+# What is RedProfesional ?
+
+RedProfesional is the system made from elgg framework, with its own themes and plugins to work flawless in our environment.
+
 # How to use this image
 
 Before you start you need to have installed:
@@ -19,7 +21,9 @@ Before you start you need to have installed:
 - docker: http://docs.docker.com/linux/step_one/ or https://docs.docker.com/installation/ubuntulinux/
 - docker-compose: https://docs.docker.com/compose/install/
 
-1.. Get the Elgg:
+1.. Copy the code of Red Profesional to workspace/elgg:
+
+--or you can develop elgg from scratch... just be sure to get the content to workspace/elgg
 
 ```console
 $ 
@@ -34,7 +38,7 @@ $ composer.phar install
 
 See http://learn.elgg.org/en/stable/intro/install.html#upload-elgg
 
-2.. Create file docker-compose.yml at your project directory, for running multi-container applications with docker-compose:
+2.. Edit file docker-compose.yml for your needs, pay attention to the environment varaibles:
 
 ```yml
 web:
@@ -57,7 +61,7 @@ mysql:
     MYSQL_DATABASE: elgg
     MYSQL_ROOT_PASSWORD: root-pass
 ```
-
+3.. create a media/elgg directory and check permissions for /media in your docker
 
 ```console
 $ docker-compose up -d
@@ -65,7 +69,7 @@ $ docker-compose up -d
 
 3.. Install the Elgg:
 ```console
-$ docker exec elgg_web_1 /elgg-docker/elgg-install.sh
+$ docker exec elggdocker_web_1 /elgg-docker/elgg-install.sh
 ```
 
 Visit your Elgg site: <http://localhost:8000/>
