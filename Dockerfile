@@ -8,8 +8,6 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         libpng12-dev \
         netcat \
-        wget \
-        unzip \
         mysql-client
 
 # Elgg requirements
@@ -17,13 +15,6 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 RUN docker-php-ext-install mbstring
-
-# Download and unzip Elgg
-RUN wget -qO /tmp/elgg.zip https://www.elgg.org/download/elgg-2.3.2.zip
-RUN rm -fr /var/www/html
-RUN unzip /tmp/elgg.zip  -d /tmp/
-RUN rm /tmp/elgg.zip
-RUN mv /tmp/elgg-* /var/www/html
 
 WORKDIR /var/www/html/
 
