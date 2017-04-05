@@ -10,7 +10,10 @@ RUN apt-get update && apt-get install -y \
         netcat \
         mysql-client \
         libldb-dev \
-        libldap2-dev
+        libldap2-dev \
+	curl \
+    	libpq-dev \
+	libmemcached-dev
 
 # Elgg requirements
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
@@ -60,5 +63,15 @@ ENV ELGG_DB_PREFIX=${ELGG_DB_PREFIX:-"elgg_"}
 ENV ELGG_PATH=${ELGG_PATH:-"/var/www/html/"}
 # 2 is ACCESS_PUBLIC
 ENV ELGG_SITE_ACCESS=${ELGG_SITE_ACCESS:-"2"}
+# Install Memcached for php 7
+RUN curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-memcached/archive/php7.tar.gz" \
+    && mkdir -p /usr/src/php/ext/memcached \
+    && tar -C /usr/src/php/ext/memcached -zxvf /tmp/memcached.tar.gz --strip 1 \
+    && docker-php-ext-configure memcached \
+    && docker-php-ext-install memcached \
+    && rm /tmp/memcached.tar.gz
 
 RUN chmod +x /elgg-docker/elgg-install.sh
+RUN mkdir /media/elgg/
+RUN chown www-data. /media/elgg
+RUN chmod 644 /media/elgg
