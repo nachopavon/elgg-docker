@@ -5,7 +5,7 @@ web:
   links:
     - mysql
   volumes:
-    - ~/WebProjects/elgg/:/var/www/html/
+    - ~/workspace/elgg/:/var/www/html/
   environment:
     MYSQL_USER: root
     MYSQL_PASS: root-pass
