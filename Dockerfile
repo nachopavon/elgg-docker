@@ -8,14 +8,18 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         libpng12-dev \
         netcat \
-        mysql-client
+        mysql-client \
+        libldb-dev
+        libldap2-dev
 
 # Elgg requirements
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 RUN docker-php-ext-install mbstring
-RUN docker-php-ext-configure ldap --with-libdir=/usr/include/ 
+RUN ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so
+RUN ln -s /usr/lib/x86_64-linux-gnu/liblber.so /usr/lib/liblber.so
+RUN docker-php-ext-configure ldap --with-libdir=/usr/lib/
 RUN docker-php-ext-install ldap
 
 WORKDIR /var/www/html/
