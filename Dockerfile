@@ -73,5 +73,7 @@ RUN curl -L -o /tmp/memcached.tar.gz "https://github.com/php-memcached-dev/php-m
 
 RUN chmod +x /elgg-docker/elgg-install.sh
 RUN mkdir /media/elgg/
-RUN chown www-data. /media/elgg
 RUN chmod 644 /media/elgg
+RUN usermod -u 1000 www-data
+RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /media/elgg
