@@ -50,7 +50,7 @@ ENV ELGG_DB_NAME=${ELGG_DB_NAME:-"elgg"}
 
 ENV ELGG_SITE_NAME=${ELGG_SITE_NAME:-"Elgg Site"}
 ENV ELGG_DATA_ROOT=${ELGG_DATA_ROOT:-"/media/elgg/"}
-ENV ELGG_WWW_ROOT=${ELGG_WWW_ROOT:-"http://localhost:8000"}
+ENV ELGG_WWW_ROOT=${ELGG_WWW_ROOT:-"http://localhost:8080"}
 
 # admin user setup
 ENV ELGG_DISPLAY_NAME=${ELGG_DISPLAY_NAME:-"Admin"}
