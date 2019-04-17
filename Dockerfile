@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.1-apache-jessie
 COPY . /elgg-docker/
 COPY docker_config/php.ini /usr/local/etc/php/
 
